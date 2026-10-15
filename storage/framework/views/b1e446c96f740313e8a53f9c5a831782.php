@@ -1,0 +1,78 @@
+<?php if (isset($component)) { $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54 = $attributes; } ?>
+<?php $component = App\View\Components\AppLayout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('app-layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\App\View\Components\AppLayout::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+     <?php $__env->slot('header', null, []); ?> <h2 class="text-[17px] font-extrabold tracking-tight text-slate-50 light:text-[#003033]">KELOLA BELAJAR</h2> <?php $__env->endSlot(); ?>
+
+    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view kelola learning')): ?>
+    <div class="mx-auto mt-5 w-full max-w-[960px] font-mono text-[10px]">
+
+        <div class="mb-4 grid grid-cols-2 gap-3" style="grid-template-columns:320px minmax(0,1fr);">
+            <section class="h-[105px] border-l-4 border-violet-500 bg-[#1b1d1f] px-4 py-3 light:bg-white"><p class="text-[10px] font-bold uppercase tracking-[0.16em] text-white light:text-black">Total Materi</p><p class="mt-1 text-[38px] leading-none text-violet-400 light:text-violet-600"><?php echo e($totalMaterials); ?></p><p class="mt-3 text-[10px] font-bold uppercase tracking-wide text-lime-400 light:text-violet-600">+<?php echo e($newThisWeek); ?> Baru</p></section>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create kelola learning')): ?><a href="<?php echo e(route('learning-materials.create')); ?>" class="flex h-9 w-max min-w-[220px] whitespace-nowrap items-center justify-center gap-3 self-end justify-self-end bg-[#30A192] px-5 text-[10px] font-bold uppercase text-[#061015] shadow-lg shadow-[#30A192]/20 hover:opacity-90 light:bg-[#2563eb] light:text-white"><span class="text-xl font-light">+</span> Tambah Materi &amp; Simulasi Baru</a><?php endif; ?>
+        </div>
+
+        <section class="overflow-hidden border border-[#263239] light:border-[#3b494b]">
+            <form method="GET" action="<?php echo e(route('learning-materials.index')); ?>" class="flex min-h-[44px] items-center gap-3 bg-[#25272a] px-3 text-[10px] uppercase tracking-[0.14em] text-white light:bg-[#003033]">
+                <div class="flex items-center gap-2 font-bold"><span class="h-2.5 w-2.5 rounded-full bg-fuchsia-500"></span><span class="h-2.5 w-2.5 rounded-full bg-cyan-400"></span><span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span><span class="ml-1">DAFTAR_MATERI</span></div>
+                <div class="flex h-7 min-w-[160px] flex-1 items-center gap-3 border border-[#3b494b] bg-[#0f1017] px-3 light:bg-white"><svg class="h-5 w-5 shrink-0 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="m20 20-4-4"/></svg><input name="search" value="<?php echo e(request('search')); ?>" type="search" placeholder="Cari..." class="min-w-0 flex-1 border-none bg-transparent font-mono text-[10px] text-gray-200 outline-none placeholder:text-gray-500 focus:ring-0 light:text-[#003033]"></div>
+                <select name="category" onchange="this.form.submit()" class="h-7 min-w-[120px] border border-[#3b494b] bg-[#0f1017] px-3 py-0 text-[10px] font-bold uppercase leading-none text-gray-200 outline-none light:bg-white light:text-[#003033]"><option value="">Kategori</option><?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><option value="<?php echo e($category->id); ?>" <?php if((string) request('category') === (string) $category->id): echo 'selected'; endif; ?>><?php echo e($category->name); ?></option><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></select>
+                <select name="year" onchange="this.form.submit()" class="h-7 min-w-[78px] border border-[#3b494b] bg-[#0f1017] px-3 py-0 text-[10px] font-bold uppercase leading-none text-gray-200 outline-none light:bg-white light:text-[#003033]"><option value="">Tahun</option><?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><option value="<?php echo e($year); ?>" <?php if((string) request('year') === (string) $year): echo 'selected'; endif; ?>><?php echo e($year); ?></option><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></select>
+                <select name="month" onchange="this.form.submit()" class="h-7 min-w-[84px] border border-[#3b494b] bg-[#0f1017] px-3 py-0 text-[10px] font-bold uppercase leading-none text-gray-200 outline-none light:bg-white light:text-[#003033]"><option value="">Bulan</option><?php $__currentLoopData = $months; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $number=>$month): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><option value="<?php echo e($number); ?>" <?php if((string) request('month') === (string) $number): echo 'selected'; endif; ?>><?php echo e($month); ?></option><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></select>
+                <button type="submit" class="hidden">Cari</button>
+            </form>
+
+<div class="overflow-x-auto bg-[#0d0e12] light:bg-[#ECECEC]"><table class="w-full min-w-0 border-collapse table-fixed"><thead><tr class="h-[38px] border-b border-[#384147] bg-[#1b1d1f] light:bg-[#ECECEC]"><th class="px-4 py-2 text-center text-[10px] font-bold uppercase tracking-wide text-gray-300 light:text-[#003033]">IDX</th><th class="px-4 py-2 text-center text-[10px] font-bold uppercase tracking-wide text-gray-300 light:text-[#003033]">Judul</th><th class="px-4 py-2 text-center text-[10px] font-bold uppercase tracking-wide text-gray-300 light:text-[#003033]">Kategori</th><th class="px-4 py-2 text-center text-[10px] font-bold uppercase tracking-wide text-gray-300 light:text-[#003033]">Dibuat</th><th class="px-4 py-2 text-center text-[10px] font-bold uppercase tracking-wide text-gray-300 light:text-[#003033]">Aksi</th></tr></thead><tbody>
+                <?php $__empty_1 = true; $__currentLoopData = $materials; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $material): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <tr class="border-b border-[#20272a] bg-[#0d0e12] hover:bg-white/[0.03] light:border-gray-200 light:bg-white"><td class="pl-2 pr-4 py-1.5 text-center text-[10px] text-gray-500">[<?php echo e(str_pad($material->id, 3, '0', STR_PAD_LEFT)); ?>]</td><td class="max-w-[390px] min-w-0 pl-2 pr-6 py-1.5 text-left text-[10px] font-bold text-gray-200 light:text-[#003033]"><div class="truncate" title="<?php echo e($material->title); ?>"><?php echo e($material->title); ?></div><div class="mt-1 text-[9px] font-normal text-gray-500"><?php echo e($material->questions_count); ?> SOAL · <?php echo e($material->attachments_count); ?> LAMPIRAN</div></td><td class="px-4 py-1.5 text-left"><span class="ml-12 inline-flex border border-[#3b494b] px-2 py-1 text-[9px] uppercase text-white light:text-[#003033]"><?php echo e($material->category->name ?? 'Umum'); ?></span></td><td class="px-4 py-1.5 text-center text-[10px] text-gray-400 light:text-[#003033]"><?php echo e($material->created_at?->format('d/m/Y') ?? '-'); ?></td><td class="px-4 py-1.5 text-center"><div class="flex justify-center gap-3"><?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit kelola learning')): ?><a href="<?php echo e(route('learning-materials.edit', $material)); ?>" class="inline-flex h-6 w-5 items-center justify-center border border-blue-300 bg-[#DBF4FF] text-[#075985]" aria-label="Lihat materi"><svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.5 12s3.5-5.5 9.5-5.5s9.5 5.5 9.5 5.5s-3.5 5.5-9.5 5.5-9.5-5.5-9.5-5.5Z"/><circle cx="12" cy="12" r="2.5" stroke-width="2"/></svg></a><?php endif; ?> <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete kelola learning')): ?><button type="button" onclick="openDeleteLearningModal(<?php echo e($material->id); ?>)" class="inline-flex h-6 w-5 items-center justify-center border border-red-300 bg-[#FFDBDB] text-[#3A0500]" aria-label="Hapus materi"><svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0 1 16.138 21H7.862a2 2 0 0 1-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 0 0-1-1h-4v3M4 7h16"/></svg></button><?php endif; ?></div></td></tr>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?><tr><td colspan="5" class="px-6 py-14 text-center text-gray-500">Belum ada materi belajar.</td></tr><?php endif; ?>
+            </tbody></table></div>
+        </section>
+
+        <?php if($materials->hasPages()): ?>
+            <?php
+                $pageUrl = fn ($p) => $materials->url($p);
+            ?>
+            <div class="mt-5 flex items-center justify-between flex-wrap gap-2 border border-[#353534] bg-[#353534] px-4 py-3 light:border-[#e5e7eb] light:bg-[#9CA3AF]">
+                <span class="text-[10.5px] uppercase tracking-wide text-white light:text-black">
+                    Total_Data: <?php echo e(number_format($materials->total())); ?>
+
+                    &nbsp;·&nbsp;
+                    Menampilkan: <?php echo e(str_pad($materials->firstItem() ?? 0, 2, '0', STR_PAD_LEFT)); ?>-<?php echo e(str_pad($materials->lastItem() ?? 0, 2, '0', STR_PAD_LEFT)); ?>
+
+                </span>
+                <div class="flex items-center gap-1">
+                    <a href="<?php echo e($materials->onFirstPage() ? '#' : $pageUrl($materials->currentPage() - 1)); ?>" class="w-7 h-7 flex items-center justify-center text-[11px] bg-[#353534] light:bg-[#9CA3AF] border border-white light:border-[#272b3a] transition <?php echo e($materials->onFirstPage() ? 'text-white light:text-black pointer-events-none' : 'text-white light:text-[#1a2e28] hover:bg-[#0d0e12] light:hover:bg-black/5'); ?>">&lsaquo;</a>
+                    <?php
+                        $start = max(1, min($materials->currentPage() - 1, $materials->lastPage() - 2));
+                        $end = min($materials->lastPage(), $start + 2);
+                    ?>
+                    <?php for($p = $start; $p <= $end; $p++): ?>
+                        <a href="<?php echo e($pageUrl($p)); ?>" class="w-7 h-7 flex items-center justify-center text-[11px] font-bold border transition <?php echo e($p === $materials->currentPage() ? 'bg-[#5c5c59] light:bg-[#003033] border-white light:border-[#003033] text-white' : 'bg-[#353534] light:bg-[#9CA3AF] border-white light:border-[#0d0e12] text-white light:text-[#0d0e12] hover:bg-[#0d0e12] light:hover:bg-black/5'); ?>"><?php echo e(str_pad($p, 2, '0', STR_PAD_LEFT)); ?></a>
+                    <?php endfor; ?>
+                    <a href="<?php echo e($materials->hasMorePages() ? $pageUrl($materials->currentPage() + 1) : '#'); ?>" class="w-7 h-7 flex items-center justify-center text-[11px] bg-[#353534] light:bg-[#9CA3AF] border border-white light:border-[#272b3a] transition <?php echo e($materials->onLastPage() ? 'text-white light:text-black pointer-events-none' : 'text-white light:text-[#1a2e28] hover:bg-[#0d0e12] light:hover:bg-black/5'); ?>">&rsaquo;</a>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php endif; ?>
+
+    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete kelola learning')): ?><div id="deleteLearningModal" class="fixed inset-0 z-50 hidden items-start justify-center bg-black/65 px-4 pt-16"><div class="h-[213px] w-full max-w-[470px] overflow-hidden rounded-md border border-[#ff3038] bg-[#202020] shadow-[0_0_24px_rgba(255,48,56,0.2)] light:bg-white"><div class="flex h-8 items-center gap-2 border-b border-[#3b3d42] bg-[#292929] px-3 light:border-[#003033] light:bg-[#003033]"><span class="h-2.5 w-2.5 rounded-full bg-fuchsia-500"></span><span class="h-2.5 w-2.5 rounded-full bg-cyan-400"></span><span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span><span class="ml-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-white">HAPUS MATERI</span></div><div class="px-6 py-3"><p class="font-mono text-[13px] leading-5 text-gray-200 light:text-[#003033]">Materi, soal, dan lampirannya akan dihapus.<br>Apakah Anda yakin ingin melanjutkan?</p><div class="flex justify-center py-0.5 text-[#ff3038]"><svg class="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linejoin="round" stroke-width="1.8" d="M10.3 3.5 2.2 18a1.5 1.5 0 0 0 1.3 2.2h17a1.5 1.5 0 0 0 1.3-2.2L13.7 3.5a2 2 0 0 0-3.4 0Z"/><path stroke-linecap="round" stroke-width="2" d="M12 9v4m0 3h.01"/></svg></div><div class="flex justify-end gap-3 pt-3"><button type="button" onclick="closeDeleteLearningModal()" class="border border-[#4f8cff] bg-[#123b78] px-3 py-1.5 font-mono text-[10px] font-bold uppercase text-[#dbeafe]">BATAL</button><button type="button" onclick="confirmDeleteLearning()" class="border border-[#ff5f57] bg-[#4b1115] px-3 py-1.5 font-mono text-[10px] font-bold uppercase text-[#ffd7d7]">HAPUS</button></div></div></div></div><form id="deleteLearningForm" method="POST" class="hidden"><?php echo csrf_field(); ?> <?php echo method_field('DELETE'); ?></form><?php endif; ?>
+    <script>let deleteLearningId=null;function openDeleteLearningModal(id){deleteLearningId=id;document.getElementById('deleteLearningModal').classList.replace('hidden','flex')}function closeDeleteLearningModal(){deleteLearningId=null;document.getElementById('deleteLearningModal').classList.replace('flex','hidden')}function confirmDeleteLearning(){if(!deleteLearningId)return;const f=document.getElementById('deleteLearningForm');f.action='/learning-materials/'+deleteLearningId;f.submit()}document.getElementById('deleteLearningModal')?.addEventListener('click',e=>{if(e.target===e.currentTarget)closeDeleteLearningModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDeleteLearningModal()});</script>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
+<?php $attributes = $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
+<?php unset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
+<?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
+<?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
+<?php endif; ?>
+<?php /**PATH D:\laragon\www\ctf_project\resources\views/managemenlearning/index.blade.php ENDPATH**/ ?>
