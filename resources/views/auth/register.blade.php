@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-slot name="title">Register</x-slot>
+    <x-slot name="title">REGISTER</x-slot>
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <div class="min-h-screen lg:h-screen bg-[#0a0a0f] relative overflow-hidden">

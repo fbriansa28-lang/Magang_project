@@ -1,9 +1,22 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-slate-200 light:text-gray-800 leading-tight">
-            {{ __('Profil') }}
+            {{ __('PROFIL') }}
         </h2>
     </x-slot>
+
+    @php
+        $user = Auth::user();
+
+        $fieldClass = 'w-full box-border bg-[#0f1017] light:bg-[#f3f7f5] border border-[#262a3d] light:border-[#dbe6e2] px-3 py-2.5 text-[13px] font-mono text-slate-100 light:text-[#1a2e28] outline-none pointer-events-none select-none cursor-default';
+
+        $fields = [
+            ['label' => 'Username', 'type' => 'text',     'value' => $user->username],
+            ['label' => 'Nama',     'type' => 'text',     'value' => $user->name],
+            ['label' => 'Email',    'type' => 'email',    'value' => $user->email],
+            ['label' => 'Password', 'type' => 'password', 'value' => '**************'],
+        ];
+    @endphp
 
     <div class="flex justify-center w-full">
 
@@ -12,13 +25,13 @@
             {{-- Avatar --}}
             <div class="flex justify-center mb-5">
                 <div class="w-[140px] h-[140px] overflow-hidden border border-[#30A192]/60 bg-[#0f1017] light:bg-[#f3f7f5] flex items-center justify-center">
-                    @if(Auth::user()->image)
-                        <img src="{{ Auth::user()->image_url }}"
-                             alt="{{ Auth::user()->name }}"
+                    @if($user->image)
+                        <img src="{{ $user->image_url }}"
+                             alt="{{ $user->name }}"
                              class="w-full h-full object-cover">
                     @else
                         <span class="text-4xl font-bold text-[#30A192] font-mono">
-                            {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                            {{ strtoupper(substr($user->name, 0, 1)) }}
                         </span>
                     @endif
                 </div>
@@ -32,54 +45,23 @@
                 </a>
             </div>
 
-            {{-- Detail Profile --}}
+            {{-- Detail Profil (read only) --}}
             <div class="flex flex-col gap-4">
-
-                {{-- Username --}}
-                <div>
-                    <label class="block mb-1.5 text-[11px] font-normal text-gray-400 light:text-[#6b7568] font-sans">
-                        USERNAME
-                    </label>
-                    <input type="text"
-                           value="{{ Auth::user()->username }}"
-                           readonly
-                           class="w-full box-border bg-[#0f1017] light:bg-[#f3f7f5] border border-[#262a3d] light:border-[#dbe6e2] px-3 py-2.5 text-[13px] font-mono text-slate-100 light:text-[#1a2e28] outline-none">
-                </div>
-
-                {{-- Nama --}}
-                <div>
-                    <label class="block mb-1.5 text-[11px] font-normal text-gray-400 light:text-[#6b7568] font-sans">
-                            NAMA
-                    </label>
-                    <input type="text"
-                           value="{{ Auth::user()->name }}"
-                           readonly
-                           class="w-full box-border bg-[#0f1017] light:bg-[#f3f7f5] border border-[#262a3d] light:border-[#dbe6e2] px-3 py-2.5 text-[13px] font-mono text-slate-100 light:text-[#1a2e28] outline-none">
-                </div>
-
-                {{-- Email --}}
-                <div>
-                    <label class="block mb-1.5 text-[11px] font-normal text-gray-400 light:text-[#6b7568] uppercase font-sans">
-                        Email
-                    </label>
-                    <input type="email"
-                           value="{{ Auth::user()->email }}"
-                           readonly
-                           class="w-full box-border bg-[#0f1017] light:bg-[#f3f7f5] border border-[#262a3d] light:border-[#dbe6e2] px-3 py-2.5 text-[13px] font-mono text-slate-100 light:text-[#1a2e28] outline-none">
-                </div>
-
-                {{-- Password --}}
-                <div>
-                    <label class="block mb-1.5 text-[11px] font-normal text-gray-400 light:text-[#6b7568] uppercase font-sans">
-                        Password
-                    </label>
-                    <input type="password"
-                           value="**************"
-                           readonly
-                           class="w-full box-border bg-[#0f1017] light:bg-[#f3f7f5] border border-[#262a3d] light:border-[#dbe6e2] px-3 py-2.5 text-[13px] font-mono text-slate-100 light:text-[#1a2e28] outline-none">
-                </div>
-
+                @foreach($fields as $field)
+                    <div>
+                        <label class="block mb-1.5 text-[11px] font-normal text-gray-400 light:text-[#6b7568] uppercase font-sans">
+                            {{ $field['label'] }}
+                        </label>
+                        <input type="{{ $field['type'] }}"
+                               value="{{ $field['value'] }}"
+                               readonly
+                               tabindex="-1"
+                               aria-readonly="true"
+                               class="{{ $fieldClass }}">
+                    </div>
+                @endforeach
             </div>
+
         </div>
     </div>
 </x-app-layout>

@@ -10,7 +10,7 @@
 <?php $component->withAttributes([]); ?>
      <?php $__env->slot('header', null, []); ?> 
         <h2 class="font-semibold text-xl text-slate-200 light:text-gray-800 leading-tight">
-            <?php echo e(__('Edit Profil')); ?>
+            <?php echo e(__('EDIT PROFIL')); ?>
 
         </h2>
      <?php $__env->endSlot(); ?>
