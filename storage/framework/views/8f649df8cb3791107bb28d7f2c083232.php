@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
-    <title><?php echo e(config('app.name', 'PetroCyber Challenge')); ?></title>
+    <title>
+    <?php echo e(config('app.name', 'PETROCYBER CHALLENGE')); ?>
+
+    | <?php echo e($title ?? 'Welcome'); ?>
+
+    </title>
+
+    <link rel="icon" type="image/png" href="<?php echo e(asset('image/logo-PG-agro-smalll.png')); ?>">
+    <link rel="apple-touch-icon" href="<?php echo e(asset('image/logo-PG-agro-smalll.png')); ?>">
 
     
     <link rel="preconnect" href="https://fonts.bunny.net">

@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'PetroCyber Challenge') }}</title>
+    <title>
+    {{ config('app.name', 'PETROCYBER CHALLENGE') }}
+    | {{ $title ?? 'Welcome' }}
+    </title>
+
+    <link rel="icon" type="image/png" href="{{ asset('image/logo-PG-agro-smalll.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('image/logo-PG-agro-smalll.png') }}">
 
     {{-- Fonts --}}
     <link rel="preconnect" href="https://fonts.bunny.net">
