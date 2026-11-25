@@ -1,10 +1,18 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-screen overflow-hidden">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    {{-- Dynamic Page Title --}}
+    <title>{{ config('app.name', 'PETROCYBER CHALLENGE') }}{{ isset($header) ? ' | ' . strip_tags($header) : '' }}</title>
+
+    {{-- Favicon --}}
+    <link rel="icon" type="image/png" href="{{ asset('image/logo-PG-agro-smalll.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('image/logo-PG-agro-smalll.png') }}">
+
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
 
@@ -23,6 +31,7 @@
 </head>
 <body class="font-['Figtree',sans-serif] bg-[#0d0e12] light:bg-[#ECECEC] antialiased transition-colors h-screen overflow-hidden">
 
+    {{-- Layout --}}
     <div class="grid grid-cols-[240px_minmax(0,1fr)] grid-rows-[1fr] h-screen overflow-hidden bg-[#0d0e12] light:bg-[#ECECEC] transition-colors">
 
         @include('layouts.navigation')
@@ -43,8 +52,6 @@
             </main>
 
         </div>
-
     </div>
-
 </body>
 </html>

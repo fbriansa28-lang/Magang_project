@@ -1,10 +1,18 @@
+
 <!DOCTYPE html>
 <html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>" class="h-screen overflow-hidden">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
-    <title><?php echo e(config('app.name', 'Laravel')); ?></title>
+
+    
+    <title><?php echo e(config('app.name', 'PETROCYBER CHALLENGE')); ?><?php echo e(isset($header) ? ' | ' . strip_tags($header) : ''); ?></title>
+
+    
+    <link rel="icon" type="image/png" href="<?php echo e(asset('image/logo-PG-agro-smalll.png')); ?>">
+    <link rel="apple-touch-icon" href="<?php echo e(asset('image/logo-PG-agro-smalll.png')); ?>">
+
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
 
@@ -23,6 +31,7 @@
 </head>
 <body class="font-['Figtree',sans-serif] bg-[#0d0e12] light:bg-[#ECECEC] antialiased transition-colors h-screen overflow-hidden">
 
+    
     <div class="grid grid-cols-[240px_minmax(0,1fr)] grid-rows-[1fr] h-screen overflow-hidden bg-[#0d0e12] light:bg-[#ECECEC] transition-colors">
 
         <?php echo $__env->make('layouts.navigation', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
@@ -64,8 +73,7 @@
             </main>
 
         </div>
-
     </div>
-
 </body>
-</html><?php /**PATH D:\laragon\www\ctf_project\resources\views/layouts/app.blade.php ENDPATH**/ ?>
+</html>
+<?php /**PATH D:\laragon\www\ctf_project\resources\views/layouts/app.blade.php ENDPATH**/ ?>

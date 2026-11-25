@@ -11,7 +11,7 @@
 
             {{-- Avatar --}}
             <div class="flex justify-center mb-5">
-                <div class="w-[140px] h-[140px] overflow-hidden border border-[#30A192]/60 bg-[#f3f7f5] light:bg-[#f3f7f5] flex items-center justify-center">
+                <div class="w-[140px] h-[140px] overflow-hidden border border-[#30A192]/60 bg-[#0f1017] light:bg-[#f3f7f5] flex items-center justify-center">
                     @if(Auth::user()->image)
                         <img src="{{ Auth::user()->image_url }}"
                              alt="{{ Auth::user()->name }}"
@@ -43,7 +43,7 @@
                     <input type="text"
                            value="{{ Auth::user()->username }}"
                            readonly
-                           class="w-full box-border bg-[#f3f7f5] light:bg-[#f3f7f5] border border-[#dbe6e2] light:border-[#dbe6e2] px-3 py-2.5 text-[13px] font-mono text-slate-200 light:text-[#1a2e28] outline-none">
+                           class="w-full box-border bg-[#0f1017] light:bg-[#f3f7f5] border border-[#262a3d] light:border-[#dbe6e2] px-3 py-2.5 text-[13px] font-mono text-slate-100 light:text-[#1a2e28] outline-none">
                 </div>
 
                 {{-- Nama --}}
@@ -54,7 +54,7 @@
                     <input type="text"
                            value="{{ Auth::user()->name }}"
                            readonly
-                           class="w-full box-border bg-[#f3f7f5] light:bg-[#f3f7f5] border border-[#dbe6e2] light:border-[#dbe6e2] px-3 py-2.5 text-[13px] font-mono text-slate-200 light:text-[#1a2e28] outline-none">
+                           class="w-full box-border bg-[#0f1017] light:bg-[#f3f7f5] border border-[#262a3d] light:border-[#dbe6e2] px-3 py-2.5 text-[13px] font-mono text-slate-100 light:text-[#1a2e28] outline-none">
                 </div>
 
                 {{-- Email --}}
@@ -65,7 +65,7 @@
                     <input type="email"
                            value="{{ Auth::user()->email }}"
                            readonly
-                           class="w-full box-border bg-[#f3f7f5] light:bg-[#f3f7f5] border border-[#dbe6e2] light:border-[#dbe6e2] px-3 py-2.5 text-[13px] font-mono text-slate-200 light:text-[#1a2e28] outline-none">
+                           class="w-full box-border bg-[#0f1017] light:bg-[#f3f7f5] border border-[#262a3d] light:border-[#dbe6e2] px-3 py-2.5 text-[13px] font-mono text-slate-100 light:text-[#1a2e28] outline-none">
                 </div>
 
                 {{-- Password --}}
@@ -76,7 +76,7 @@
                     <input type="password"
                            value="**************"
                            readonly
-                           class="w-full box-border bg-[#f3f7f5] light:bg-[#f3f7f5] border border-[#dbe6e2] light:border-[#dbe6e2] px-3 py-2.5 text-[13px] font-mono text-slate-200 light:text-[#1a2e28] outline-none">
+                           class="w-full box-border bg-[#0f1017] light:bg-[#f3f7f5] border border-[#262a3d] light:border-[#dbe6e2] px-3 py-2.5 text-[13px] font-mono text-slate-100 light:text-[#1a2e28] outline-none">
                 </div>
 
             </div>
